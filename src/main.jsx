@@ -6,6 +6,8 @@ import router from "./Router/router.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <div className="urbanist-font">
+      <RouterProvider router={router} />
+    </div>
   </StrictMode>
 );

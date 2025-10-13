@@ -53,7 +53,7 @@ const Navbar = () => {
         </div>
         <NavLink className="dark-text text-[32px] font-extrabold flex relative">
           <img src={Logo} alt="logo" />
-          <div className="absolute ml-5 mt-4">Profast</div>
+          <div className="absolute ml-5 mt-3 ">Profast</div>
         </NavLink>
       </div>
 

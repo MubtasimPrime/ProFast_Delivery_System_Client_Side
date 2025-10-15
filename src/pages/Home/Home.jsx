@@ -4,6 +4,7 @@ import Works from "../../components/Home/Works";
 import Service from "../../components/Home/Service/Service";
 import SalesTeams from "../../components/Home/SalesTeams";
 import Tracking from "../../components/Home/Tracking/Tracking";
+import Merchant from "../../components/Home/Merchant";
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
       <Service></Service>
       <SalesTeams></SalesTeams>
       <Tracking></Tracking>
+      <Merchant></Merchant>
     </>
   );
 };

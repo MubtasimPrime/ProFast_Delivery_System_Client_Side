@@ -14,10 +14,8 @@ window.addEventListener("load", () => {
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <section className="urbanist-font main-bg pt-8 pb-10">
-      <div className="max-w-[1500px] mx-auto">
-        <RouterProvider router={router} />
-      </div>
+    <section className="urbanist-font">
+      <RouterProvider router={router} />
     </section>
   </StrictMode>
 );

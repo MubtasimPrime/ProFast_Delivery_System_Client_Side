@@ -4,11 +4,13 @@ import Footer from "../components/shared/Footer";
 
 const MainLayout = () => {
   return (
-    <>
-      <Navbar></Navbar>
-      <Outlet></Outlet>
-      <Footer></Footer>
-    </>
+    <div className="main-bg pt-8 pb-10">
+      <section className="max-w-[1500px] mx-auto">
+        <Navbar></Navbar>
+        <Outlet></Outlet>
+        <Footer></Footer>
+      </section>
+    </div>
   );
 };
 

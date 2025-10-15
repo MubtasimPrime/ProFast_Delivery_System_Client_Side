@@ -3,8 +3,20 @@ import { FcGoogle } from "react-icons/fc";
 import LoginImg from "../../assets/authImage.png";
 import Logo from "../../assets/logo.svg";
 import { NavLink } from "react-router";
+import { useForm } from "react-hook-form";
 
 const Login = () => {
+  const {
+    register,
+    handleSubmit,
+    // watch,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
   return (
     <div className="min-h-screen flex">
       {/* Left Section */}
@@ -22,17 +34,28 @@ const Login = () => {
           </h1>
           <p className="mb-8 primary-gray">Login with Profast</p>
 
-          <form className="flex flex-col gap-4">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col gap-4"
+          >
             <input
               type="email"
               placeholder="Email"
+              {...register("email", { required: true })}
               className="border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-lime-400"
             />
+            {errors.email?.type === "required" && (
+              <p className="text-red-500">Email is required</p>
+            )}
             <input
               type="password"
               placeholder="Password"
+              {...register("password", { required: true })}
               className="border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-lime-400"
             />
+            {errors.password?.type === "required" && (
+              <p className="text-red-500">Password is required</p>
+            )}
             <div className="text-right">
               <NavLink className="text-sm text-green-600 hover:underline">
                 Forget Password?

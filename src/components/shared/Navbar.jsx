@@ -64,10 +64,16 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end gap-4">
-        <NavLink className="text-[#606060] py-3 px-8 border border-gray-300 rounded-xl font-bold text-[20px] hover:bg-[#caeb66] transition duration-300 hover:border-[#caeb66] hover:text-[#303030]">
+        <NavLink
+          className="text-[#606060] py-3 px-8 border border-gray-300 rounded-xl font-bold text-[20px] hover:bg-[#caeb66] transition duration-300 hover:border-[#caeb66] hover:text-[#303030]"
+          to="/login"
+        >
           Sign In
         </NavLink>
-        <NavLink className="py-3 px-8 border bg-[#caeb66] rounded-xl font-bold text-[20px] text-[#303030] outline-none border-[#caeb66] hover:border-[#c7c2c2] hover:bg-white hover:text-[#606060] transition duration-300">
+        <NavLink
+          className="py-3 px-8 border bg-[#caeb66] rounded-xl font-bold text-[20px] text-[#303030] outline-none border-[#caeb66] hover:border-[#c7c2c2] hover:bg-white hover:text-[#606060] transition duration-300"
+          to="/register"
+        >
           Be a rider
         </NavLink>
       </div>

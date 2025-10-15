@@ -3,8 +3,20 @@ import { FcGoogle } from "react-icons/fc";
 import LoginImg from "../../assets/authImage.png";
 import Logo from "../../assets/logo.svg";
 import { NavLink } from "react-router";
+import { useForm } from "react-hook-form";
 
 const Register = () => {
+  const {
+    register,
+    handleSubmit,
+    // watch,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
   return (
     <div className="min-h-screen flex">
       {/* Left Section */}
@@ -22,40 +34,76 @@ const Register = () => {
           </h1>
           <p className="mb-8 text-gray-500">Register with Profast</p>
 
-          {/* Image Upload */}
-          <div className="flex flex-col mb-5">
-            <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden border border-gray-300 mb-3">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-8 h-8 text-gray-400"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zM12 14c-4 0-8 1.9-8 4v2h16v-2c0-2.1-4-4-8-4z" />
-              </svg>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col gap-4"
+          >
+            {/* Image Upload */}
+            <div className="flex flex-col mb-5">
+              <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden border border-gray-300 mb-3">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-8 h-8 text-gray-400"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zM12 14c-4 0-8 1.9-8 4v2h16v-2c0-2.1-4-4-8-4z" />
+                </svg>
+              </div>
+              <label className="text-sm text-green-600 cursor-pointer hover:underline">
+                Upload Image
+                <input type="file" accept="image/*" className="hidden" />
+              </label>
             </div>
-            <label className="text-sm text-green-600 cursor-pointer hover:underline">
-              Upload Image
-              <input type="file" className="hidden" />
-            </label>
-          </div>
 
-          <form className="flex flex-col gap-4">
             <input
               type="text"
               placeholder="Name"
+              {...register("text", { required: true, minLength: 6 })}
               className="border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-lime-400"
             />
+            {errors.name && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.name?.type === "required"
+                  ? "Name is required"
+                  : "Name must be at least 6 characters"}
+              </p>
+            )}
             <input
               type="email"
               placeholder="Email"
+              {...register("email", { required: true })}
               className="border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-lime-400"
             />
+            {errors.email?.type === "required" && (
+              <p className="text-red-500">Email is required</p>
+            )}
             <input
               type="password"
               placeholder="Password"
+              {...register("password", {
+                required: true,
+                validate: {
+                  minLength: (v) =>
+                    v.length >= 6 || "Password must be at least 6 characters",
+                  capital: (v) =>
+                    /[A-Z]/.test(v) ||
+                    "Must include at least one capital letter",
+                  special: (v) =>
+                    /[!@#$%^&*(),.?":{}|<>]/.test(v) ||
+                    "Must include at least one special character",
+                  number: (v) =>
+                    /\d/.test(v) || "Must include at least one number",
+                },
+              })}
               className="border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-lime-400"
             />
+
+            {errors.password && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.password.message}
+              </p>
+            )}
 
             <button
               type="submit"

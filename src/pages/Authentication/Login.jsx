@@ -4,8 +4,10 @@ import LoginImg from "../../assets/authImage.png";
 import Logo from "../../assets/logo.svg";
 import { NavLink } from "react-router";
 import { useForm } from "react-hook-form";
+import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
+  const { signInWithGoogle } = useAuth();
   const {
     register,
     handleSubmit,
@@ -17,12 +19,25 @@ const Login = () => {
     console.log(data);
   };
 
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   return (
     <div className="min-h-screen flex">
       {/* Left Section */}
       <div className="w-full lg:w-1/2 flex flex-col justify-center items-center px-10 lg:px-24">
         {/* Logo */}
-        <NavLink className="dark-text text-[32px] font-extrabold flex absolute top-6 left-10 lg:top-11 lg:left-15 items-center gap-2">
+        <NavLink
+          className="dark-text text-[32px] font-extrabold flex absolute top-6 left-10 lg:top-11 lg:left-15 items-center gap-2"
+          to={"/"}
+        >
           <img src={Logo} alt="logo" />
           <div className="absolute ml-5 mt-4 ">Profast</div>
         </NavLink>
@@ -85,7 +100,10 @@ const Login = () => {
             <div className="flex-1 h-px bg-gray-300"></div>
           </div>
 
-          <button className="w-full flex items-center justify-center gap-2 border border-gray-300 py-2 rounded-lg hover:bg-gray-50 cursor-pointer">
+          <button
+            className="w-full flex items-center justify-center gap-2 border border-gray-300 py-2 rounded-lg hover:bg-gray-50 cursor-pointer"
+            onClick={handleGoogleSignIn}
+          >
             <FcGoogle className="text-xl" />
             Login with Google
           </button>
